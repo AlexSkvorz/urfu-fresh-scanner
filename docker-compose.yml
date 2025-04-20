@@ -1,0 +1,10 @@
+services:
+  FreshScannerBot:
+    build: .
+    image: fresh-scanner-bot
+    environment:
+      TZ: Europe/Moscow
+    env_file:
+      - .env
+    volumes:
+      - ./fresh_scanner.db:/bot/fresh_scanner.db
