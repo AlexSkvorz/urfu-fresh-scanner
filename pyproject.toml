@@ -7,6 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.13"
+aiogram = "^3.20"
+python-dotenv = "^1.1.0"
 
 [build-system]
 requires = ["poetry-core"]
