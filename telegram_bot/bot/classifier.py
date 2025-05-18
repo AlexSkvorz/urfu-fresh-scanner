@@ -4,12 +4,12 @@ from ultralytics import YOLO
 
 @dataclass
 class FreshClassifierResult:
-    is_rotten: bool
+    fresh_percent: int
     name: str
 
 class FreshClassifier:
     model = YOLO("../runs/classify/train4/weights/best.pt")
-    CONFIDENCE_THRESHOLD = 0.6
+    CONFIDENCE_THRESHOLD = 0.5
 
     def predict(self, image_path: str) -> FreshClassifierResult | None:
         results = self.model.predict(image_path)
@@ -50,7 +50,12 @@ class FreshClassifier:
             case _:
                 product_name = "неизвестный продукт"
 
+        if is_rotten:
+            fresh_percent = (1 - predicted_class_confidence) * 100
+        else:
+            fresh_percent = predicted_class_confidence * 100
+
         return FreshClassifierResult(
-            is_rotten=is_rotten,
+            fresh_percent=round(fresh_percent, 2),
             name=product_name,
         )

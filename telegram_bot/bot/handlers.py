@@ -32,14 +32,9 @@ async def handle_photo(message: Message, bot: Bot, classifier: FreshClassifier):
         await message.answer("Не нашел продуктов на фото :(")
         return
 
-    if result.is_rotten:
-       is_rotten_string = "да"
-    else:
-       is_rotten_string = "нет"
-
     await message.answer(
         f"На фото обнаружен продукт: {result.name}\n" +
-        f"Испорченный: {is_rotten_string}"
+        f"Степень свежести: {result.fresh_percent}%"
     )
 
 
