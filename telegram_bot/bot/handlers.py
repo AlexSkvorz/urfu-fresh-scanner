@@ -4,8 +4,9 @@ from aiogram import Router, F, Bot
 from aiogram.filters import Command
 from aiogram.types import Message
 
-router = Router()
+from bot.classifier import FreshClassifier
 
+router = Router()
 
 @router.message(Command("start"))
 async def handle_start(message: Message):
@@ -15,7 +16,7 @@ async def handle_start(message: Message):
 
 
 @router.message(F.photo)
-async def handle_photo(message: Message, bot: Bot):
+async def handle_photo(message: Message, bot: Bot, classifier: FreshClassifier):
     photo = message.photo[-1]
     file_info = await bot.get_file(photo.file_id)
 
@@ -24,9 +25,22 @@ async def handle_photo(message: Message, bot: Bot):
     file_path = os.path.join(save_dir, f"{photo.file_id}.jpg")
 
     await bot.download_file(file_info.file_path, destination=file_path)
+    result = classifier.predict(file_path)
+    os.remove(file_path)
 
-    await message.answer(f"На фото обнаружен продукт: банан"
-                         f"\nСтепень свежести: 68%")
+    if result is None:
+        await message.answer("Не нашел продуктов на фото :(")
+        return
+
+    if result.is_rotten:
+       is_rotten_string = "да"
+    else:
+       is_rotten_string = "нет"
+
+    await message.answer(
+        f"На фото обнаружен продукт: {result.name}\n" +
+        f"Испорченный: {is_rotten_string}"
+    )
 
 
 @router.message()
