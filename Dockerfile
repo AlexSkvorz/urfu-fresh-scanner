@@ -16,3 +16,6 @@ ENV POETRY_VENV=/opt/poetry-venv
 RUN /opt/poetry-venv/bin/poetry install --no-interaction --no-cache --no-root
 
 ENTRYPOINT /opt/poetry-venv/bin/poetry run python3 main.py
+
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost:8000/health || exit 1

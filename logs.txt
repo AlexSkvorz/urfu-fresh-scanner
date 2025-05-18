@@ -1,0 +1,16 @@
+parser-bot      | aiogram.utils.token.TokenValidationError: Token is invalid! It must be 'str' type instead of <class 'NoneType'> type.
+parser-bot      | Traceback (most recent call last):
+parser-bot      |   File "/bot-master/main.py", line 9, in <module>
+parser-bot      |     from bot_master.handlers import (start_handler, settings_handler, filters_handlers, keywords_handlers,
+parser-bot      |   File "/bot-master/bot_master/handlers/start_handler.py", line 8, in <module>
+parser-bot      |     from database.web_parser_database import db_manager
+parser-bot      |   File "/bot-master/database/web_parser_database.py", line 5, in <module>
+parser-bot      |     from settings.loader import PG_IP, PG_PORT, PG_USER, PG_PASSWORD, PG_DB
+parser-bot      |   File "/bot-master/settings/loader.py", line 12, in <module>
+parser-bot      |     bot = Bot(token=os.getenv('BOT_MASTER_TOKEN'), parse_mode=ParseMode.HTML)
+parser-bot      |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+parser-bot      |   File "/root/.cache/pypoetry/virtualenvs/userbot-parser-o-6jnqmY-py3.11/lib/python3.11/site-packages/aiogram/client/bot.py", line 258, in __init__
+parser-bot      |     validate_token(token)
+parser-bot      |   File "/root/.cache/pypoetry/virtualenvs/userbot-parser-o-6jnqmY-py3.11/lib/python3.11/site-packages/aiogram/utils/token.py", line 17, in validate_token
+parser-bot      |     raise TokenValidationError(
+parser-bot      | aiogram.utils.token.TokenValidationError: Token is invalid! It must be 'str' type instead of <class 'NoneType'> type.

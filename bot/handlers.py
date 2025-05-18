@@ -6,11 +6,13 @@ from aiogram.types import Message
 
 router = Router()
 
+
 @router.message(Command("start"))
 async def handle_start(message: Message):
     await message.answer(f"Привет, {message.from_user.full_name}!"
                          f" Я умею распознавать свежесть продуктов по фото."
                          f" Пришли мне фото продукта, свежесть которого нужно оценить.")
+
 
 @router.message(F.photo)
 async def handle_photo(message: Message, bot: Bot):
@@ -25,6 +27,7 @@ async def handle_photo(message: Message, bot: Bot):
 
     await message.answer(f"На фото обнаружен продукт: банан"
                          f"\nСтепень свежести: 68%")
+
 
 @router.message()
 async def handle_message(message: Message):

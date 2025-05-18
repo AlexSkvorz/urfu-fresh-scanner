@@ -1,0 +1,6 @@
+default_backend = "ollama_host"
+
+[backends.ollama_host]
+type = "ollama"
+url = "http://host.docker.internal:11434/api"
+default_model = "llama3"
