@@ -1,4 +1,5 @@
-.idea
-__pycache__/
-.env
-photos
+telegram_bot/.idea
+*__pycache__/
+*/.env
+telegram_bot/photos
+model/dataset
