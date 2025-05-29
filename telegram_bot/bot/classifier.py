@@ -39,7 +39,7 @@ class FreshClassifier:
                 product_name = "банан"
             case 'potato':
                 product_name = "картофель"
-            case 'orange':
+            case 'oranges':
                 product_name = "апельсин"
             case 'bittergroud':
                 product_name = "горький огурец"
